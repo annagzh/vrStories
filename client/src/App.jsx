@@ -11,10 +11,10 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      authenticated: false,
+      authenticated: false
     };
     this.verify = this.verify.bind(this);
-    
+
   }
 
   componentDidMount() {
@@ -41,14 +41,14 @@ class App extends React.Component {
               <Button href='/login' floated='left'>Login with Facebook</Button>
             </Grid.Row>
 
-            <Grid.Row color='black' id='banner' textAlign='center'> 
+            <Grid.Row color='black' id='banner' textAlign='center'>
               <Header inverted >
                   VRStories
               </Header>
             </Grid.Row>
 
             <Grid.Row id='tag'>
-                GitHub: positivepotatoes 
+                GitHub: positivepotatoes
             </Grid.Row>
           </Grid>
           : <Home/>
