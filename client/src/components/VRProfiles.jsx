@@ -31,20 +31,32 @@ class VRProfiles extends React.Component {
     }
   }
 
+
+
   render() {
     let x = -6;
     return (
       <Entity>
 
         <Entity
-          geometry={{primitive: 'box', width: 2, height: 2, depth: 0.15}}
+          geometry={{primitive: 'box', width: 1, height: 1, depth: 0.15}}
           material={{color: 'white', opacity: 0.5}}
           position={{x: -6, y: 0, z: -3.1}}
-          events={{click: (() => this.onMoreFriendsClick())}}></Entity>
+          events={{click: (() => this.onLeftClick())}}></Entity>
 
         <Entity
-          text={{value: 'show\nmore\nfriends', align: 'center', color: 'white', width: 10}}
+          text={{value: '<', align: 'center', color: 'white', width: 20}}
           position={{x: -6, y: 0, z: -3}}></Entity>
+
+        <Entity
+          geometry={{primitive: 'box', width: 1, height: 1, depth: 0.15}}
+          material={{color: 'white', opacity: 0.5}}
+          position={{x: 8.3, y: 0, z: -3.1}}
+          events={{click: (() => this.onRightClick())}}></Entity>
+
+        <Entity
+          text={{value: '>', align: 'center', color: 'white', width: 20}}
+          position={{x: 8.3, y: 0, z: -3}}></Entity>
 
         {
           this.state.friendsToShow.map((friend, i) => {
