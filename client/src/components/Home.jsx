@@ -159,16 +159,10 @@ class Home extends React.Component {
         onDragEnter={this.onDragEnter.bind(this)}
         onDragLeave={this.onDragLeave.bind(this)}
       >
-<<<<<<< HEAD
         { dropzoneActive && <div style={overlayStyle}>Drop to share your story</div> }
         <div style={blur} className='app'>
           {scene}
         </div>
-=======
-        { dropzoneActive && <div style={overlayStyle}>Drop file to upload to your story</div> }
-        {/* CHANGE vRIndex TO mediaFrame IF YOU WANT TO USE REGULAR/NON VR PLAYER*/}
-        {vRStories}
->>>>>>> add sending base64 string
       </Dropzone>
     );
   }
