@@ -12,4 +12,7 @@ router.route('/:id/addstory')
 router.route('/:id/getlatest')
   .get(StoryController.getLatestStory);
 
+router.route('/:id/getlatestimage')
+  .get(StoryController.getLatestImage);
+
 module.exports = router;

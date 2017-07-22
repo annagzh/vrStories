@@ -32,6 +32,7 @@ class Home extends React.Component {
   fetch() {
     axios.get('/fetch')
       .then(response => {
+        console.log('response in /fetch:', response);
         this.setState({ user: response.data.user }, () => {
           axios.get(`/api/profiles/${this.state.user.id}/friends`)
             .then(response => {
@@ -117,13 +118,13 @@ class Home extends React.Component {
     let scene;
     if (this.state.friends) {
       if (this.state.inVRMode) {
-        scene = 
+        scene =
           <Scene vr-mode-ui="enabled: true">
             <a-assets>
               {this.state.assets}
             </a-assets>
 
-            <VRStories 
+            <VRStories
               user={user}
               friends={friends}
               autoPlayNext={true}
@@ -136,9 +137,9 @@ class Home extends React.Component {
             <VRCursor/>
           </Scene>;
       } else {
-        scene = 
+        scene =
           <div>
-            <MediaFrame 
+            <MediaFrame
               user={user}
               friends={friends}
               autoPlayNext={true}
@@ -158,10 +159,16 @@ class Home extends React.Component {
         onDragEnter={this.onDragEnter.bind(this)}
         onDragLeave={this.onDragLeave.bind(this)}
       >
+<<<<<<< HEAD
         { dropzoneActive && <div style={overlayStyle}>Drop to share your story</div> }
         <div style={blur} className='app'>
           {scene}
         </div>
+=======
+        { dropzoneActive && <div style={overlayStyle}>Drop file to upload to your story</div> }
+        {/* CHANGE vRIndex TO mediaFrame IF YOU WANT TO USE REGULAR/NON VR PLAYER*/}
+        {vRStories}
+>>>>>>> add sending base64 string
       </Dropzone>
     );
   }

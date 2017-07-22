@@ -1,18 +1,20 @@
-const AWS = require('aws-sdk');
-const AWSconfig = require('config')['AWS'];
 const models = require('../../db/models');
+const base64 = require('../helpers/base64ArrayBuffer.js');
 
-AWS.config.update({
-  accessKeyId: AWSconfig.s3.accessKeyId,
-  secretAccessKey: AWSconfig.s3.secretAccessKey
-});
-
-let s3 = new AWS.S3();
+const s3 = require('../middleware/s3.js').s3;
 
 module.exports.save = (req, res) => {
+
   var key = Date.now().toString();
   var userId = req.body.userId;
-  var awsLink = 'https://s3-us-west-1.amazonaws.com/vrstories/' + key;
+
+  if (req.files[0].mimetype === 'video/mp4') {
+    var awsLink = 'https://s3-us-west-1.amazonaws.com/vrstories/' + key;
+  } else if (req.files[0].mimetype === 'image/jpeg') {
+    console.log('req.files[0]:', req.files[0]);
+    let base64Str = base64.convert(req.files[0].buffer);
+    var awsLink = base64Str;
+  }
   // send aws link & userId to db
   models.Story.forge({ profile_id: userId, aws_link: awsLink, metadata: req.files[0].mimetype })
     .save();
