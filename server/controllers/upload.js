@@ -13,7 +13,8 @@ module.exports.save = (req, res) => {
   } else if (req.files[0].mimetype === 'image/jpeg') {
     console.log('req.files[0]:', req.files[0]);
     let base64Str = base64.convert(req.files[0].buffer);
-    var awsLink = base64Str;
+    // <img src="data:image/jpeg;base64, ${base64Str}>
+    var awsLink = `data:image/jpeg;base64, ${base64Str}`;
   }
   // send aws link & userId to db
   models.Story.forge({ profile_id: userId, aws_link: awsLink, metadata: req.files[0].mimetype })
