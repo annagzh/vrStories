@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Entity, Scene, Options } from 'aframe-react';
 import VRProfiles from './VRProfiles.jsx';
 import VRAssets from './VRAssets.jsx';
 import VRPrimitive from './VRPrimitive.jsx';
@@ -55,10 +56,10 @@ class VRStories extends React.Component {
     this.setAutoPlayOrSplash();
     // this.clickInSkyListener();
     this.createAssets();
+    this.setSingleStoryDuration();
   }
 
   toggleInEntity() {
-    console.log('toggle');
     this.setState({
       inEntity: !this.state.inEntity
     });
@@ -82,6 +83,29 @@ class VRStories extends React.Component {
       });
     });
   }
+
+  // ===========================================================================
+  getDurationForOne() {
+    let storyObject = this.state.currentStory;
+    let storyDom = document.getElementById(storyObject.id + ',' + storyObject.index);
+    // console.log('storyDom:', so);
+    if (!storyDom.duration) {
+      return this.state.defaultDuration / 1000;
+    } else {
+      return storyDom.duration;
+    }
+  }
+
+  setSingleStoryDuration() {
+    let that = this;
+    this.setState({
+      singleStoryDuration: {
+        total: that.getDurationForOne()
+      }
+    });
+  }
+
+  // ===========================================================================
 
   countStoriesDuration() {
     let that = this;
