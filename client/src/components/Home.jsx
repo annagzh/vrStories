@@ -20,7 +20,9 @@ class Home extends React.Component {
       // States below are used for react-dropzone
       accept: '',
       files: [],
-      dropzoneActive: false
+      dropzoneActive: false,
+      //  for view count:
+      dBProfileId: null
     };
     this.fetch = this.fetch.bind(this);
   }
@@ -37,7 +39,8 @@ class Home extends React.Component {
             .then(response => {
               this.setState({
                 user: response.data.user,
-                friends: response.data.friends
+                friends: response.data.friends,
+                dBProfileId: response.data.profile_id
               });
             });
         });
@@ -123,7 +126,7 @@ class Home extends React.Component {
               {this.state.assets}
             </a-assets>
 
-            <VRStories 
+            <VRStories
               user={user}
               friends={friends}
               autoPlayNext={true}
@@ -136,9 +139,9 @@ class Home extends React.Component {
             <VRCursor/>
           </a-scene>;
       } else {
-        scene = 
+        scene =
           <div>
-            <MediaFrame 
+            <MediaFrame
               user={user}
               friends={friends}
               autoPlayNext={true}
