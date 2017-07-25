@@ -88,6 +88,10 @@ class Home extends React.Component {
     });
   }
 
+  saveViewCountToDB() {
+    console.log('invoked save views to DB!');
+  }
+
   render() {
     const { user, friends, accept, files, dropzoneActive } = this.state;
 
@@ -135,6 +139,7 @@ class Home extends React.Component {
               defaultDuration={6000}
               assetsCallback={this.assetsCallback.bind(this)}
               exitCallback={this.toggleInVRMode.bind(this)}
+              viewCountCallback={this.saveViewCountToDB.bind(this)}
             />
             <VRCursor/>
           </a-scene>;
